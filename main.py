@@ -29,14 +29,41 @@ def run(filename: str) -> None:
 
     Returns:
         list[int], list[int], list[int]: You will return the maximums, averages, and stdevs (in this order).
+
+    
     """  
     data = []
 
     # open file and read into the `data` list
-    ...
+    file = open(filename)
+    for line in file:
+        data.append(line)
+    file.close()
+
+    #filter non digits
+    data = filter_nondigits(data)
+    #filter non outliers
+    data = filter_outliers(data)
+
+
+    # Calculate metrics and save plots
+    maximums = window_max(data, 6)
+    fig, ax = plt.subplots()
+    ax.plot(maximums)
+    plt.savefig("images/maximums.png")
+
+    averages = window_average(data, 6)
+    fig, ax = plt.subplots()
+    ax.plot(averages)
+    plt.savefig("images/averages.png")
+
+    stdevs = window_stddev(data, 6)
+    fig, ax = plt.subplots()
+    ax.plot(stdevs)
+    plt.savefig("images/stdevs.png")
 
     # return all 3 lists
-    ...
+    return maximums, averages, stdevs
 
 
 if __name__ == "__main__":

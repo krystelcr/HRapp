@@ -8,16 +8,16 @@ def filter_nondigits(data: list) -> list:
     Returns:
         list[int]: list of integers, with all non-digit strings removed
     """
-    lsofd = []
+    listofdigits = []
     if len(data) == 0 or "":
         return data
     for rate in data:
         rate = rate.strip()
         if rate.isdigit():
-            lsofd.append(int(rate))
+            listofdigits.append(int(rate))
         else:
             rate = rate
-    return lsofd
+    return listofdigits
 
 
 
@@ -31,8 +31,8 @@ def filter_outliers(data: list) -> list:
     Returns:
         list[int]: list of integers, between 31-249
     """
-    olsofd = []
+    listofnotoutliers = []
     for rate in data:
         if rate > 30 and rate < 250:
-            olsofd.append(rate)
-    return olsofd
+            listofnotoutliers.append(rate)
+    return listofnotoutliers
